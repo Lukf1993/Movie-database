@@ -12,11 +12,9 @@ const App = () =>{
     loading: false,
     results: []
   })
-  // const [suggestions, setSuggestions] = React.useState([])
   // const [movie, setMovie] = React.useState([])
   const API_URL = 'https://api.themoviedb.org/3'
   const API_KEY = 'be4ec4c766ce01b7d9b6f5755c0d5e4a'
-
   console.log(query)
   const getMovie = id =>
     fetch(`${API_URL}/movie/${id}?api_key=${API_KEY}`)
@@ -43,6 +41,7 @@ const App = () =>{
     if( query !== undefined && query !== '') {
       setQuery({
         loading: true,
+        results: []
       });
       findMovies(`${query}`)
         .then(res => {
@@ -74,13 +73,13 @@ const App = () =>{
   };
 
   return (
-  //   <>
+    <>
         <form>
           <input type='search' placeholder='search movie' onChange={onChange('value')} />
         </form>
-  //   <AutoSuggestion />
-  //   <Movie />
-  //   </>
+    <AutoSuggestion getMovie={getMovie} data={query.results}  />
+  {/* <Movie /> */}
+   </>
   )
 
 }
