@@ -5,6 +5,7 @@ import './movie.scss';
 
 const Movie = props => {
     const movie = props.movie
+    
 
      return ( 
          <div>
