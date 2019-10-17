@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './movie.scss';
+
 
 const Movie = props => {
+    const movie = props.movie
     console.log(props.movie)
     
-     return (        
-        <div>
-            <img src={`http://image.tmdb.org/t/p/w185/${props.movie.poster_path}`} 
-                alt='poster' />
-            <h1>{props.movie.title}</h1>
-            <p>{props.movie.overview}</p>
-            <p>{`${props.movie.vote_average}/10`}</p>
+     return ( 
+         <div>
+         {movie.map(item => (
+             <>
+             <div className='flex flex-row movie'>
+                <img src={`http://image.tmdb.org/t/p/w185/${item.poster_path}`} 
+                    alt='poster' className='movie_img' />
+                <div className='flex flex-column'>
+                    <h1 className='movie_title'>{item.title}</h1>
+                    <p className='movie_paragraph'>{item.overview}</p>
+                    <p className='movie_paragraph'>{`Rating: ${item.vote_average}/10`}</p>
+                </div>
+            </div>
+            </>
+         ))}    
         </div>
     )
     

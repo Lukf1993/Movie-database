@@ -1,0 +1,27 @@
+.flex{
+    display: flex;
+    &-row{
+        flex-direction: row;
+    }
+    &-column{
+        flex-direction: column;
+    }
+}
+.movie{
+    width: 95vw;
+    margin: 0px auto;
+    background: #fff;
+    &_img{
+        height: 400px;
+    }
+    &_title{
+        font-weight: bold;
+        font-size: 30px;
+        margin: 20px;
+    }
+    &_paragraph{
+        margin: 30px 30px 30px 20px;
+        max-width: 60vw;
+        line-height: 25px;
+    }
+}
