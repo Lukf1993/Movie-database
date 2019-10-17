@@ -1,0 +1,25 @@
+.button{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 0px auto;
+    background: #fff;
+    outline: auto;
+    border: none;
+    width: 95vw;
+    &_img{
+        height: 130px;
+        width: 100px;
+        margin: 10px;
+    }
+    &_title{
+        font-weight: bold;
+        font-size: 30px;
+    }
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
