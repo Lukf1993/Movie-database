@@ -1,10 +1,11 @@
 import React from 'react';
+import StarRatingComponent from 'react-star-rating-component';
 import './movie.scss';
 
 
 const Movie = props => {
     const movie = props.movie
-    
+
      return ( 
          <div>
          {movie.map(item => (
@@ -16,7 +17,11 @@ const Movie = props => {
                     <h1 className='movie_title'>{item.title}</h1>
                     <p className='movie_paragraph'>{item.overview}</p>
                     <p className='movie_paragraph movie_paragraph--size'>{`Genre: ${item.genres[0].name}`}</p>
-                    <p className='movie_paragraph movie_paragraph--size'>{`Rating: ${item.vote_average}/10`}</p>
+                    <StarRatingComponent className='movie_rating'
+                    name="rate1" 
+                    starCount={10}
+                    value={item.vote_average}
+        />
                 </div>
             </div>
             </>
