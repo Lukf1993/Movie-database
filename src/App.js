@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AutoSuggestion from './components/AutoSuggestion'
 import Movie from './components/Movie'
 import './App.css';
+import Search from './components/Search';
 
 const App = () =>{
 
@@ -10,12 +11,12 @@ const App = () =>{
     debounce: null,
     error: false,
     loading: false,
-    results: []
+    results: [],
   })
-  // const [movie, setMovie] = React.useState([])
+
+  const [movie, setMovie] = React.useState({})
   const API_URL = 'https://api.themoviedb.org/3'
   const API_KEY = 'be4ec4c766ce01b7d9b6f5755c0d5e4a'
-  console.log(query)
   const getMovie = id =>
     fetch(`${API_URL}/movie/${id}?api_key=${API_KEY}`)
       .then(res => res.json())
@@ -72,13 +73,23 @@ const App = () =>{
     }
   };
 
+  const movieResults = id => {
+    getMovie(id)
+    .then(res => {
+      setMovie(res)
+      setQuery({results: []})
+    })
+    .catch(error => {
+      alert(error)    
+      }
+    );
+  };
+
   return (
     <>
-        <form>
-          <input type='search' placeholder='search movie' onChange={onChange('value')} />
-        </form>
-    <AutoSuggestion getMovie={getMovie} data={query.results}  />
-  {/* <Movie /> */}
+    <Search onChange={onChange} />  
+    <AutoSuggestion getMovie={movieResults} data={query.results}  />
+    <Movie movie={movie} />
    </>
   )
 
