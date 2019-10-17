@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './search.scss';
 
 const Search = props => {
     return (
         <form>
-          <input type='search' placeholder='search movie' onChange={props.onChange('value')} />
+          <input type='search' placeholder='search movie' onChange={props.onChange('value')} className='search' />
         </form>
     )
 }
