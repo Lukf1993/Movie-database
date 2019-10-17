@@ -4,7 +4,6 @@ import './movie.scss';
 
 const Movie = props => {
     const movie = props.movie
-    console.log(props.movie)
     
      return ( 
          <div>
@@ -16,11 +15,12 @@ const Movie = props => {
                 <div className='flex flex-column'>
                     <h1 className='movie_title'>{item.title}</h1>
                     <p className='movie_paragraph'>{item.overview}</p>
-                    <p className='movie_paragraph'>{`Rating: ${item.vote_average}/10`}</p>
+                    <p className='movie_paragraph movie_paragraph--size'>{`Genre: ${item.genres[0].name}`}</p>
+                    <p className='movie_paragraph movie_paragraph--size'>{`Rating: ${item.vote_average}/10`}</p>
                 </div>
             </div>
             </>
-         ))}    
+         ))}
         </div>
     )
     

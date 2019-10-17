@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AutoSuggestion from './components/AutoSuggestion'
 import Movie from './components/Movie'
 import './App.css';
@@ -14,7 +14,10 @@ const App = () =>{
     results: [],
   })
 
-  const [movie, setMovie] = React.useState({})
+  const [movie, setMovie] = React.useState([])
+  const [genre, setGenre] = React.useState([])
+
+
   const API_URL = 'https://api.themoviedb.org/3'
   const API_KEY = 'be4ec4c766ce01b7d9b6f5755c0d5e4a'
   const getMovie = id =>
@@ -24,6 +27,11 @@ const App = () =>{
 
     const findMovies = query =>
       fetch(`${API_URL}/search/movie?api_key=${API_KEY}&query=${query}`)
+        .then(res => res.json())
+        .catch(error => error.json());
+
+    const getGenres = () => 
+    fetch(`${API_URL}/genre/movie/list?api_key=${API_KEY}`)
         .then(res => res.json())
         .catch(error => error.json());
 
@@ -76,20 +84,27 @@ const App = () =>{
   const movieResults = id => {
     getMovie(id)
     .then(res => {
-      setMovie(res)
+      setMovie([res])
       setQuery({results: []})
     })
     .catch(error => {
       alert(error)    
       }
     );
+    getGenres()
+    .then(res => {
+      setGenre(res.genres)
+    })
+    .catch(error => {
+      alert(error)
+    })
   };
 
   return (
     <>
     <Search onChange={onChange} />  
     <AutoSuggestion getMovie={movieResults} data={query.results}  />
-    <Movie movie={movie} />
+    <Movie movie={movie} genre={genre} />
    </>
   )
 
