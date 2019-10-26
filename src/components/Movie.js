@@ -1,6 +1,5 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
-import Star from './Star'
 import './movie.scss';
 
 
@@ -24,7 +23,6 @@ const Movie = props => {
                     starCount={10}
                     value={item.vote_average}
         />
-        <Star />
                 </div>
             </div>
             </>

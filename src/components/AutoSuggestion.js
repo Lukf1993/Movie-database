@@ -7,7 +7,7 @@ const AutoSuggestion = props => {
     
     return (
         <>
-        <ul>
+        <ul className='list'>
         {suggestion.map((item, index) => (
             <>
             {index < 5  && (
